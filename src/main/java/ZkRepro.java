@@ -39,10 +39,10 @@ public class ZkRepro {
             }
 
             zk.create(nodePath, bigData, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
-            System.out.println("Success! (Unexpected)");
+            System.out.println("Success! (Expected with fix)");
         } catch (Exception e) {
-            System.out.println("Caught expected exception: " + e);
-            // e.printStackTrace();
+            System.out.println("Caught unexpected exception: " + e);
+            e.printStackTrace();
         } finally {
             zk.close();
         }

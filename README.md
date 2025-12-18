@@ -1,22 +1,38 @@
-# ZooKeeper 1MB Limit Reproduction Demo
+# ZooKeeper 1MB Limit Reproduction and Fix
 
-This project provides a Java example to demonstrate the default 1MB data transfer limit in ZooKeeper. When a client attempts to write data larger than the `jute.maxbuffer` setting (default 1MB), the server closes the connection, resulting in a `ConnectionLossException`.
+This project demonstrates the default 1MB data transfer limit in ZooKeeper and provides a fix by increasing the `jute.maxbuffer` property.
 
-## Prerequisites
+## The Issue
 
-*   Java Development Kit (JDK) 8 or later
-*   Apache Maven
+By default, ZooKeeper limits data packets to 1MB. Attempting to write larger data results in a `ConnectionLossException` as the server closes the connection.
+
+## The Fix
+
+To support larger data packets, you must set the `jute.maxbuffer` system property (in bytes) on **both** the server and the client.
+
+In this example, we set it to `2097152` (2MB).
+
+### Server Side Fix
+Create a file `conf/java.env` in your ZooKeeper installation directory with the following content:
+```bash
+export JVMFLAGS="-Djute.maxbuffer=2097152"
+```
+(This has already been applied in the provided `env/zookeeper_env.tar.gz`).
+
+### Client Side Fix
+Pass the property to the JVM running the client:
+```bash
+-Djute.maxbuffer=2097152
+```
+(This has been configured in `pom.xml` for the Maven execution).
 
 ## Setup
 
 1.  **Prepare the Environment:**
-    A pre-configured ZooKeeper environment is provided in `env/zookeeper_env.tar.gz`.
+    Unpack the pre-configured ZooKeeper environment:
 
     ```bash
-    # Unpack the environment
     tar -zxf env/zookeeper_env.tar.gz
-
-    # Create the data directory (if not exists)
     mkdir -p zookeeper_data
     ```
 
@@ -26,8 +42,6 @@ This project provides a Java example to demonstrate the default 1MB data transfe
     ```
 
 ## Running the Demo
-
-### Using Maven (Recommended)
 
 1.  Build the project:
     ```bash
@@ -41,12 +55,11 @@ This project provides a Java example to demonstrate the default 1MB data transfe
 
 ## Expected Output
 
-You should see output indicating that the connection was established, followed by an attempt to write >1MB of data, and finally a `ConnectionLossException`:
+With the fix applied, the write operation should succeed:
 
 ```
 Connecting to Zookeeper...
 Connected.
 Attempting to write 1048676 bytes to /big_data_node...
-...
-Caught expected exception: org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss for /big_data_node
+Success! (Expected with fix)
 ```
