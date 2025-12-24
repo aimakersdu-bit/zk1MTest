@@ -2,3 +2,4 @@ apache-zookeeper-3.8.4-bin/
 *.tar.gz
 !env/zookeeper_env.tar.gz
 zookeeper_data/
+target/
