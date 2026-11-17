@@ -1,0 +1,4 @@
+{
+  "knowledge_dir": "doc/knowledge",
+  "comment": "OpenWiki 业务团队自定义知识目录配置，系统构建流水线将自动扫描并融合入知识图谱与 MCP 索引"
+}
