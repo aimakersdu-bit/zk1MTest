@@ -10,6 +10,8 @@
 ## 2. 核心架构设计 (Ephemeral Sequential)
 必须采用基于 **临时顺序节点 (EPHEMERAL_SEQUENTIAL)** 的排队唤醒机制：
 
+![分布式锁与命名空间拓扑](_assets/zk-architecture.svg)
+
 ```mermaid
 sequenceDiagram
     autonumber
@@ -44,3 +46,4 @@ sequenceDiagram
 
 ## 4. 对应落地代码
 - 详见源码：`src/main/java/com/openwiki/demo/lock/DistributedLockDemo.java`
+

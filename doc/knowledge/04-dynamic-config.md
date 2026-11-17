@@ -36,3 +36,4 @@ sequenceDiagram
 
 ## 3. 对应落地代码
 - 详见源码：`src/main/java/com/openwiki/demo/config/ConfigCenterDemo.java`
+

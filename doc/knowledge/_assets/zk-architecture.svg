@@ -73,3 +73,4 @@
   <text x="685" y="345" font-family="monospace" font-size="9" fill="#94a3b8">└── 192.168.1.11:8080</text>
   <text x="740" y="380" font-family="sans-serif" font-size="10" fill="#6ee7b7" text-anchor="middle">● 心跳维持 · 故障自愈</text>
 </svg>
+

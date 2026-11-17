@@ -2,6 +2,10 @@
 
 > **适用场景：** 生产级 ZooKeeper 高可用集群部署规划、容灾容量计算、分布式主备选举 (Master-Worker)。
 
+## 0. 集群协同拓扑与命名空间全景
+
+![ZooKeeper 集群架构与命名空间设计](_assets/zk-architecture.svg)
+
 ## 1. 生产环境集群规格与过半机制 (Quorum)
 ZooKeeper 依赖 ZAB (ZooKeeper Atomic Broadcast) 协议保证强一致性。为了防止脑裂并保证一致性，写操作和选举必须满足**大多数节点同意 (Quorum = N / 2 + 1)**：
 
@@ -39,3 +43,4 @@ flowchart TD
 
 ## 4. 对应落地代码
 - 详见源码：`src/main/java/com/openwiki/demo/election/LeaderElectionDemo.java`
+

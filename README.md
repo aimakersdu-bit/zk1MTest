@@ -10,6 +10,7 @@
 
 | 场景编号 | 场景主题 | 核心规约与关键机制 | 对应 Wiki 文档 | 对应 Java 演示代码 |
 | :---: | :--- | :--- | :--- | :--- |
+| **00** | **架构全景统领** | 命名空间全景架构图、ZNode 层次树形拓扑与四大场景映射 | [00-architecture-overview.md](doc/knowledge/00-architecture-overview.md) | `zk-architecture.svg` |
 | **01** | **分布式锁落地** | 临时顺序节点 (`EPHEMERAL_SEQUENTIAL`)、前序节点监听、彻底消灭惊群效应 (Herd Effect) | [01-distributed-lock.md](doc/knowledge/01-distributed-lock.md) | `com.openwiki.demo.lock.DistributedLockDemo` |
 | **02** | **集群规划与选主** | 奇数节点容灾公式、Quorum 过半机制、Leader/Follower/Observer 角色分工与 ZAB 协议 | [02-cluster-election.md](doc/knowledge/02-cluster-election.md) | `com.openwiki.demo.election.LeaderElectionDemo` |
 | **03** | **生产排错与 FAQ** | Session Expired 与 JVM STW/GC 调优、脑裂预防、磁盘事务日志自动清理 (`autopurge`) | [03-troubleshooting-faq.md](doc/knowledge/03-troubleshooting-faq.md) | `ZkRepro.java` (含 1MB Jute 大报文规约) |
